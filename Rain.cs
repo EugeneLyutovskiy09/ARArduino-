@@ -33,7 +33,7 @@ public class RainSnow : MonoBehaviour
         }
         else
         {
-            main.startLifetime = valueLT; // the higher the ph values the less it rains as the cloud starts to dissipate once the light intensity rises 
+            main.startLifetime = valueLT; // the higher the LT value the less it rains as the cloud starts to dissipate once the light intensity rises 
         }
 
     }
