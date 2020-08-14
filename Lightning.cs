@@ -18,10 +18,10 @@ public class Lightning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int analogValueT = manager.analogRead(AnalogPin.A0);
-        int analogValuePh = manager.analogRead(AnalogPin.A5);
+        int analogValueT = manager.analogRead(AnalogPin.A0); // getting value from the thermoresistor (Tsensor) 
+        int analogValuePh = manager.analogRead(AnalogPin.A5); // getting value from the photoresistor (Photosensor) 
         var main = ps.main;
-        if (analogValueT > 250 && analogValuePh < 150)
+        if (analogValueT > 250 && analogValuePh < 150) // as we do not need lightning to strike all the time, we set a limited condition: it only appears when temp exceeds 250 units and when the cloud is still at least partially there
         {
             main.startLifetime = 0.4f;
         }
