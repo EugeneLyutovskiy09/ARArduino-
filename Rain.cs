@@ -19,22 +19,21 @@ public class RainSnow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int analogValueT = manager.analogRead(AnalogPin.A0);
-        int analogValuePh = manager.analogRead(AnalogPin.A5);
+        int analogValueT = manager.analogRead(AnalogPin.A0); // getting value from the thermoresistor (Tsensor) 
+        int analogValuePh = manager.analogRead(AnalogPin.A5); // getting value from the photoresistor (Photosensor) 
         var main = ps.main;
 
-        float mappedPh = (analogValuePh - 0) * (9f - 0f) / (250f - 0f) + 0f;
-        float mappedOp = (analogValuePh - 0) * (1f - 0f) / (250f - 0f) + 0f;
+        float mappedPh = (analogValuePh - 0) * (9f - 0f) / (250f - 0f) + 0f; // mapping value from photosensor onto the range (0-9) 
         float valueLT = 9f - mappedPh;
-        float valueOp = 1f - mappedOp;
+    
 
-        if (analogValueT < 85)
+        if (analogValueT < 85) 
         {
-            main.startLifetime = 0;
+            main.startLifetime = 0; // if temp drops lower 85 units, rain stops and is replaced by snow (see next script)
         }
         else
         {
-            main.startLifetime = valueLT;
+            main.startLifetime = valueLT; // the higher the ph values the less it rains as the cloud starts to dissipate once the light intensity rises 
         }
 
     }
