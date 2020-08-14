@@ -18,22 +18,20 @@ public class Snow : MonoBehaviour
 
     void Update()
     {
-        int analogValueT = manager.analogRead(AnalogPin.A0);
-        int analogValuePh = manager.analogRead(AnalogPin.A5);
+        int analogValueT = manager.analogRead(AnalogPin.A0); // getting value from the thermoresistor (T-sensor)
+        int analogValuePh = manager.analogRead(AnalogPin.A5); // getting value from the photoresistor (Photosensor)
         var main = ps.main;
 
-        float mappedLifeTime = (analogValuePh - 0) * (9f - 0f) / (250f - 0f) + 0f;
-        float mappedOp = (analogValuePh - 0) * (1f - 0f) / (250f - 0f) + 0f;
+        float mappedLifeTime = (analogValuePh - 0) * (9f - 0f) / (250f - 0f) + 0f; // mapping values from the Ph sensor within the needed range (0f - 9f) for manipulating the startLifetime parameter of the PS system
         float valueLT = 9f - mappedLifeTime;
-        float valueOp = 1f - mappedOp;
 
         if (analogValueT > 85)
         {
-            main.startLifetime = 0;
+            main.startLifetime = 0; // if temp exceeds 85 units the snow is repleced by rain (see previous script). setting this value provides smooth transition between snowy and rainy weather conditions (sometimes both can be seen in the scene) 
         }
         else
         {
-            main.startLifetime = valueLT;
+            main.startLifetime = valueLT; // mapped value decreases due to rising sunlight and dissipating cloud
         }
 
     }
