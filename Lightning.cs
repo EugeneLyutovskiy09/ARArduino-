@@ -23,11 +23,11 @@ public class Lightning : MonoBehaviour
         var main = ps.main;
         if (analogValueT > 250 && analogValuePh < 150) // as we do not need lightning to strike all the time, we set a limited condition: it only appears when temp exceeds 250 units and when the cloud is still, at least, partially there. (if there is no cloud, there is no lightning possible)
         {
-            main.startLifetime = 0.4f;
+            main.startLifetime = 0.4f; //setting lifetime parameter of the particle system on 0.4  
         }
         else
         {
-            main.startLifetime = 0f;
+            main.startLifetime = 0f; //if condition is not fulfilled lightning disappears 
         }
     }
 }
